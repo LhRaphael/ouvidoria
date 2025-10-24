@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ouvidoria+ | Página Inicial</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100">
+
+    <!-- 
+      PÁGINA 1: PÁGINA INICIAL DESCRITIVA (LANDING PAGE)
+    -->
+    <div id="page-landing">
+        <!-- Header -->
+        <header class="bg-gray-800 shadow-lg border-b border-gray-700">
+            <nav class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <span class="text-2xl font-bold text-indigo-400">Ouvidoria+</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="login.html" class="text-gray-300 hover:text-white font-medium rounded-md px-3 py-2 text-sm">Login</a>
+                    <a href="registro.html" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-md px-4 py-2 text-sm transition duration-150 ease-in-out">Criar Conta</a>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <main>
+            <section class="relative bg-gray-900 py-20 sm:py-32">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight">
+                        Sua voz, nossa prioridade.
+                    </h1>
+                    <p class="mt-6 text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto">
+                        Bem-vindo à plataforma de ouvidoria digital. Registre suas reclamações, sugestões, elogios ou denúncias de forma fácil e acompanhe todo o processo.
+                    </p>
+                    <div class="mt-10 flex justify-center gap-x-4">
+                        <a href="registro.html" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg px-6 py-3 text-base transition duration-150 ease-in-out">
+                            Registrar Manifestação
+                        </a>
+                        <a href="login.html" class="bg-gray-700 hover:bg-gray-600 text-gray-200 font-semibold rounded-lg px-6 py-3 text-base transition duration-150 ease-in-out">
+                            Acompanhar Protocolo
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Como Funciona -->
+            <section class="bg-gray-800 py-16 sm:py-24">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+                    <h2 class="text-3xl font-bold text-center text-white mb-12">Como Funciona</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                        <!-- Passo 1 -->
+                        <div class="bg-gray-700 p-8 rounded-xl shadow-lg border border-gray-600">
+                            <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gray-600">
+                                <!-- Ícone: Caneta -->
+                                <svg class="h-6 w-6 text-indigo-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>
+                            </div>
+                            <h3 class="mt-5 text-lg font-semibold text-white">1. Registre</h3>
+                            <p class="mt-2 text-base text-gray-400">Crie sua conta e descreva sua manifestação em detalhes. Você receberá um número de protocolo.</p>
+                        </div>
+                        <!-- Passo 2 -->
+                        <div class="bg-gray-700 p-8 rounded-xl shadow-lg border border-gray-600">
+                            <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gray-600">
+                                <!-- Ícone: Lupa -->
+                                <svg class="h-6 w-6 text-indigo-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>
+                            </div>
+                            <h3 class="mt-5 text-lg font-semibold text-white">2. Acompanhe</h3>
+                            <p class="mt-2 text-base text-gray-400">Nossa equipe classifica e encaminha para o setor responsável. Você acompanha o status online.</p>
+                        </div>
+                        <!-- Passo 3 -->
+                        <div class="bg-gray-700 p-8 rounded-xl shadow-lg border border-gray-600">
+                            <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gray-600">
+                                <!-- Ícone: Chat -->
+                                <svg class="h-6 w-6 text-indigo-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.068.157 2.148.279 3.238.364.49.03.974.06 1.45.093l.306.01.67.015.669.015.67.015.305.01c.477.032.96.062 1.45.093.09.006 1.07.05 3.238.364 1.584.233 2.707-1.626 2.707-3.227v-1.042c0-1.6-1.123-2.994-2.707-3.227-1.068-.157-2.148-.279-3.238-.364-.49-.03-.974-.06-1.45-.093l-.306-.01-.67-.015-.669-.015-.67-.015-.305-.01c-.477-.032-.96-.062-1.45-.093-.09-.006-1.07-.05-3.238-.364-1.584-.233-2.707 1.626-2.707 3.227v1.042zM12 9c-1.105 0-2 .895-2 2s.895 2 2 2 2-.895 2-2-.895-2-2-2z" /></svg>
+                            </div>
+                            <h3 class="mt-5 text-lg font-semibold text-white">3. Receba a Resposta</h3>
+                            <p class="mt-2 text-base text-gray-400">Receba a resposta final e avalie o atendimento prestado pela ouvidoria.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Empresas Parceiras -->
+            <section class="bg-gray-900 py-16 sm:py-24">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+                    <h2 class="text-center text-lg font-semibold leading-8 text-white">
+                        Empresas e organizações que confiam em nossa plataforma
+                    </h2>
+                    <div class="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+                        <span class="col-span-2 max-h-12 w-full object-contain lg:col-span-1 text-center text-2xl font-bold text-gray-600 opacity-70">Empresa A</span>
+                        <span class="col-span-2 max-h-12 w-full object-contain lg:col-span-1 text-center text-2xl font-bold text-gray-600 opacity-70">Governo B</span>
+                        <span class="col-span-2 max-h-12 w-full object-contain lg:col-span-1 text-center text-2xl font-bold text-gray-600 opacity-70">Instituto C</span>
+                        <span class="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1 text-center text-2xl font-bold text-gray-600 opacity-70">Parceiro D</span>
+                        <span class="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1 text-center text-2xl font-bold text-gray-600 opacity-70">Sindicato E</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-gray-400 py-8 border-t border-gray-700">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <p>&copy; 2025 Plataforma de Ouvidoria+. Todos os direitos reservados.</p>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
