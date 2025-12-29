@@ -1,16 +1,12 @@
+import TableManifest from "./TableManifest";
+import { useAppContext } from "../utils/Context";
 function PanelAdmin() {
+    const { user } = useAppContext();
+
     return (
         <main>
             <h2>Painel de manifestações</h2>
-            <table>
-                <tr>
-                    <th>Protocolo</th>
-                    <th>Tipo</th>
-                    <th>Data</th>
-                    <th>Status</th>
-                    <th>Ações</th>
-                </tr>
-            </table>
+            <TableManifest classUser={"admin"} id={user.cnpj} />
             <div>
                 <h3>Filtros</h3>
                 <div>

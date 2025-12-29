@@ -1,11 +1,13 @@
 import { useState } from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 function UserProfile() {
   const [nameSignal, setNameSignal] = useState(false);
 
-
   return (
     <div>
+      <Header />
       <h2>Perfil</h2>
       <p>Detalhes do usuário serão exibidos aqui.</p>
       <div>
@@ -13,7 +15,7 @@ function UserProfile() {
         <button>Alterar imagem</button>
       </div>
       <div>
-        <h2>Nome do usuário</h2>
+        <h3>Nome do usuário</h3>
         {nameSignal ? (
           <form>
             <input type="text" placeholder="Novo nome" />
@@ -24,6 +26,7 @@ function UserProfile() {
           <button onClick={() => setNameSignal(true)}>Editar nome</button>
         )}
       </div>
+      <Footer />
     </div>
   );
 }

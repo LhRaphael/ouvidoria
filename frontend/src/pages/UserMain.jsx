@@ -4,9 +4,9 @@ import Modal from "../components/Modal";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useAppContext } from "../utils/Context";
-
+import TableManifest from "../components/TableManifest";
 function UserMain() {
-    const { isModalOpen, manageModal } = useAppContext();
+    const { isModalOpen, manageModal, user } = useAppContext();
 
     return (
         <div>
@@ -18,15 +18,7 @@ function UserMain() {
                     <h2>Minhas manifestações</h2>
                     <button onClick={manageModal}>Nova manifestação</button>
                 </div>
-                <table>
-                    <tr>
-                        <th>Protocolo</th>
-                        <th>Tipo</th>
-                        <th>Data</th>
-                        <th>Status</th>
-                        <th>Ações</th>
-                    </tr>
-                </table>
+                <TableManifest classUser={"user"} id={user.cpf} />
             </main>
             {isModalOpen && <Modal />}
             <Footer/>
