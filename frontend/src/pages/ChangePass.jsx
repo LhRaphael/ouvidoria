@@ -21,6 +21,7 @@ function ChangePass() {
         e.preventDefault();
         if(e.target.value.length === 6){
             console.log("Código inserido com sucesso")
+            //Criar validação de código no backend e implementar aqui o fetch
             setCodeSignal(false);
             setPasswordSignal(true);
         }

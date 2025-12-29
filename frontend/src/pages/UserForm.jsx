@@ -65,13 +65,14 @@ function UserForm() {
         }
         
         const data = {
-            name: formData.get('name'),
+            classe: "user",
+            nome: formData.get('name'),
             cpf: formData.get('cpf'),
             email: email,
             telefone: formData.get('telefone'),
             nascimento: formData.get('nascimento'),
             endereco: formData.get('endereco'),
-            password: passOne
+            senha: passOne
         }
         console.log("Usuário criado com sucesso:", data);
         navigate("/loginForm")

@@ -2,7 +2,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 
-function Home() {
+function LandPage() {
     return (
         <div>
             <Header>
@@ -47,4 +47,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default LandPage;
