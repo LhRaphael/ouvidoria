@@ -57,7 +57,7 @@ function ChangePass() {
     }
 
     return (
-        <div>
+        <div className="changePass">
             <Header />
             <main>
                 <h2>Alterar senha</h2>

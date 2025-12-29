@@ -6,7 +6,7 @@ function UserProfile() {
   const [nameSignal, setNameSignal] = useState(false);
 
   return (
-    <div>
+    <div className="userProfile">
       <Header />
       <h2>Perfil</h2>
       <p>Detalhes do usuário serão exibidos aqui.</p>

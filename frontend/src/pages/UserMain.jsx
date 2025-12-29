@@ -9,7 +9,7 @@ function UserMain() {
     const { isModalOpen, manageModal, user } = useAppContext();
 
     return (
-        <div>
+        <div className="userMain">
             <Header>
                 <Link to="/userProfile">Pefil</Link>
             </Header>

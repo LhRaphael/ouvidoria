@@ -4,7 +4,7 @@ function PanelAdmin() {
     const { user } = useAppContext();
 
     return (
-        <main>
+        <main className="panelAdmin">
             <h2>Painel de manifestações</h2>
             <TableManifest classUser={"admin"} id={user.cnpj} />
             <div>

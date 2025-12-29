@@ -33,7 +33,7 @@ function AdminForm() {
     }
 
     return (
-        <div>
+        <div className="adminForm">
             <Header/>
             <main>
                 <h1>Informe sua Instituição</h1>

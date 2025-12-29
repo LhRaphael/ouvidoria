@@ -5,7 +5,7 @@ function Modal(){
     const { manageModal } = useAppContext();
 
     return (
-        <div>
+        <div className="modal">
             <h2>Registrar nova manifestação</h2>
             <div>
                 <span>Selecionar Categória</span>

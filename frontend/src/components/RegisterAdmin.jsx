@@ -40,7 +40,7 @@ function RegisterAdmin({ cnpj }) {
     }
 
     return (
-        <div>
+        <div className="registerAdmin">
             <h2>Cadastro de usuário administrador Principal</h2>
             <form onSubmit={submitAdminUser}>
                 <label htmlFor="adminName">Nome completo</label>

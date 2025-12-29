@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function LandPage() {
     return (
-        <div>
+        <div className="LandPage">
             <Header>
                 <Link to="/loginForm">Login</Link>
                 <Link to="/userForm">Create account</Link>

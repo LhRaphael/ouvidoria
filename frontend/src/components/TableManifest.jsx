@@ -27,7 +27,7 @@ function TableManifest({classUser, id}) {
     }, [classUser, id]);
     
     return (
-        <div>
+        <div className="tableManifest">
             {loading && <p>Carregando manifestações...</p>}
             {error && <p style={{color: 'red'}}>Erro: {error}</p>}
             {!loading && !error && manifests.length === 0 && (

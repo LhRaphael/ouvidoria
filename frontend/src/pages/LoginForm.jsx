@@ -40,7 +40,7 @@ function LoginForm() {
     }
 
     return (
-        <div>
+        <div className="loginForm">
             <Header />
             <main>
                 <h2>Acesse sua conta</h2>

@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function ReportAdmin() {
     return (
-        <div>
+        <div className="reportAdmin">
             <h2>Relatório Administrativo</h2>
             <div>
                 <input type="date" name="dataRelatorio" id="dataRelaatorio" />

@@ -5,7 +5,7 @@ import { useAppContext } from "../utils/Context";
 function SettingsAdmin() {
 
     return (
-        <div>
+        <div className="settingsAdmin">
             <h2>Configurações</h2>
             <div>
                 <h3>Perfil</h3>

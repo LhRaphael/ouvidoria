@@ -88,7 +88,7 @@ function UserForm() {
     }
 
     return (
-        <div>
+        <div className="userForm">
             <Header />
             <main>
                 <h2>Crie sua conta</h2>

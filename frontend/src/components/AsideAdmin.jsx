@@ -23,7 +23,7 @@ function AsideAdmin() {
     }
 
     return (
-        <aside>
+        <aside className="asideAdmin">
             <h1>Admin Ouvidoria+</h1>
                 <ul>
                     <li><button onClick={setPanel}>Manifestações</button></li>

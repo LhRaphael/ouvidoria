@@ -6,7 +6,7 @@ import { useAppContext } from "../utils/Context";
 function AdminMain(){
     const { adminPanelData } = useAppContext();
     return (
-        <div>
+        <div className="admin-layout">
             <Header/>
             {adminPanelData}
             <AsideAdmin/>
