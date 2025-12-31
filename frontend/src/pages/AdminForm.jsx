@@ -43,14 +43,20 @@ function AdminForm() {
                 </p>
                 {!nextStap && (
                     <form onSubmit={submitInstitution}>
-                        <label htmlFor="institutionName">Nome da Instituição</label>
-                        <input type="text" name="institutionName" id="institutionName" placeholder="Nome da Instituição" required />
+                        <div>
+                            <label htmlFor="institutionName">Nome da Instituição</label>
+                            <input type="text" name="institutionName" id="institutionName" placeholder="Nome da Instituição" required />
+                        </div>
 
-                        <label htmlFor="institutionCnpj">Cnpj da instituição</label>
-                        <input type="number" name="institutionCnpj" id="institutionCnpj" placeholder="Cnpj da Instituição" required />
+                        <div>
+                            <label htmlFor="institutionCnpj">Cnpj da instituição</label>
+                            <input type="number" name="institutionCnpj" id="institutionCnpj" placeholder="Cnpj da Instituição" required />
+                        </div>
 
-                        <label htmlFor="institutionSede">Sede da instituição</label>
-                        <input type="text" name="institutionSede" id="institutionSede" required/>
+                        <div>
+                            <label htmlFor="institutionSede">Sede da instituição</label>
+                            <input type="text" name="institutionSede" id="institutionSede" required/>
+                        </div>
 
                         <button type="submit">Prosseguir</button>
                     </form>   

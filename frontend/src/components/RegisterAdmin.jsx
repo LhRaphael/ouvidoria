@@ -43,21 +43,31 @@ function RegisterAdmin({ cnpj }) {
         <div className="registerAdmin">
             <h2>Cadastro de usuário administrador Principal</h2>
             <form onSubmit={submitAdminUser}>
-                <label htmlFor="adminName">Nome completo</label>
-                <input type="text" name="adminName" id="adminName" placeholder="Seu nome completo" required />
+                <div>
+                    <label htmlFor="adminName">Nome completo</label>
+                    <input type="text" name="adminName" id="adminName" placeholder="Seu nome completo" required />
+                </div>
 
-                <label htmlFor="adminEmail">E-mail</label>
-                <input type="email" name="adminEmail" id="adminEmail" placeholder="Seu melhor e-mail" required />
+                <div>
+                    <label htmlFor="adminEmail">E-mail</label>
+                    <input type="email" name="adminEmail" id="adminEmail" placeholder="Seu melhor e-mail" required />
+                </div>
 
-                <label htmlFor="adminCpf">CPF</label>
-                <input type="number" name="adminCpf" id="adminCpf" placeholder="Seu CPF" required />
+                <div>
+                    <label htmlFor="adminCpf">CPF</label>
+                    <input type="number" name="adminCpf" id="adminCpf" placeholder="Seu CPF" required />
+                </div>      
 
-                <label htmlFor="adminPassword">Senha</label>
-                <input type="password" name="adminPassword" id="adminPassword" placeholder="Crie uma senha" required />
+                <div>
+                    <label htmlFor="adminPassword">Senha</label>
+                    <input type="password" name="adminPassword" id="adminPassword" placeholder="Crie uma senha" required />
+                </div>
 
-                <label htmlFor="adminPasswordTwo">Confirme a senha</label>
-                <input type="password" name="adminPasswordTwo" id="adminPasswordTwo" placeholder="Confirme sua senha" required />
-                <button onClick={showPass}>Visualizar</button>
+                <div>
+                    <label htmlFor="adminPasswordTwo">Confirme a senha</label>
+                    <input type="password" name="adminPasswordTwo" id="adminPasswordTwo" placeholder="Confirme sua senha" required />
+                    <button onClick={showPass}>Visualizar</button>
+                </div>
 
                 <button type="submit">Cadastrar Usuário Administrador</button>
             </form>

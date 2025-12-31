@@ -1,0 +1,588 @@
+/* =========================================
+   1. Variáveis e Reset Global (Tema Dark Purple)
+   ========================================= */
+:root {
+  /* Paleta de Cores Roxo Escuro */
+  --bg-body: #0f0a14;        /* Fundo principal quase preto */
+  --bg-card: #1a1223;        /* Fundo de cartões/containers */
+  --bg-input: #281c34;       /* Fundo de inputs */
+  
+  --primary: #7b2cbf;        /* Roxo vibrante para ações principais */
+  --primary-hover: #9d4edd;  /* Roxo mais claro para hover */
+  --secondary: #3c096c;      /* Roxo profundo para detalhes */
+  
+  --text-main: #e0e0e0;      /* Texto principal (quase branco) */
+  --text-muted: #9e9e9e;     /* Texto secundário */
+  --text-inverse: #ffffff;
+  
+  --border-color: #3e2a52;   /* Cor das bordas */
+  --success: #03dac6;
+  --danger: #cf6679;
+  
+  /* Layout */
+  --header-height: 70px;
+  --border-radius: 8px;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-hover);
+  transition: 0.3s;
+}
+
+a:hover {
+  color: var(--text-inverse);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* =========================================
+   2. Componentes Globais (Inputs, Buttons)
+   ========================================= */
+
+button {
+  background-color: var(--primary);
+  color: var(--text-inverse);
+  border: none;
+  padding: 10px 20px;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--primary-hover);
+}
+
+button.secondary {
+  background-color: transparent;
+  border: 1px solid var(--primary);
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  color: var(--text-main);
+  font-size: 1rem;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(123, 44, 191, 0.2);
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* =========================================
+   3. Header e Footer
+   ========================================= */
+
+header {
+  height: var(--header-height);
+  background-color: var(--bg-card);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+}
+
+header h1 {
+  margin: 0;
+  color: var(--primary-hover);
+  font-size: 1.5rem;
+}
+
+header a {
+  margin-left: 20px;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+header a:hover {
+  color: var(--primary-hover);
+}
+
+.footerMain {
+  background-color: var(--bg-card);
+  padding: 40px 5%;
+  text-align: center;
+  margin-top: auto;
+  border-top: 1px solid var(--border-color);
+}
+
+.footerMain ul {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.footerMain li {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* =========================================
+   4. Landing Page
+   ========================================= */
+
+.LandPage {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.LandPage main {
+  text-align: center;
+  padding: 80px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.LandPage main h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: var(--text-inverse);
+}
+
+.LandPage main a {
+  display: inline-block;
+  margin: 10px;
+  padding: 12px 24px;
+  background-color: var(--secondary);
+  color: white;
+  border-radius: 50px;
+  font-weight: bold;
+}
+
+.LandPage main a:hover {
+  background-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.homeList {
+  background-color: var(--bg-card);
+  padding: 60px 5%;
+  text-align: center;
+}
+
+.homeList > div {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.homeList > div > div {
+  flex: 1;
+  min-width: 250px;
+  max-width: 350px;
+  padding: 20px;
+  background: var(--bg-body);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+}
+
+.homeList h3 {
+  color: var(--primary-hover);
+}
+
+/* =========================================
+   5. Formulários (Login, UserForm, AdminForm)
+   ========================================= */
+
+.loginForm, .userForm, .adminForm, .changePass, .registerAdmin {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.loginForm main, .userForm main, .adminForm main, .changePass main, .registerAdmin {
+  flex: 1;
+  width: 100%;
+  max-width: 500px; /* Formulários estreitos por padrão */
+  margin: 40px auto;
+  padding: 30px;
+  background-color: var(--bg-card);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+}
+
+/* Ajuste específico para formulários largos como UserForm */
+.userForm main, .adminForm main {
+  max-width: 800px;
+}
+
+.userForm form, .adminForm form, .registerAdmin form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+@media (min-width: 768px) {
+  .userForm form, .registerAdmin form {
+    grid-template-columns: 1fr 1fr; /* Duas colunas em desktop */
+  }
+  
+  .userForm form button[type="submit"],
+  .registerAdmin form button[type="submit"] {
+    grid-column: span 2;
+    margin-top: 20px;
+  }
+}
+
+.userForm aside {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  padding: 20px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  background: rgba(255,255,255,0.05);
+  border-radius: var(--border-radius);
+}
+
+/* =========================================
+   6. User Main & Table Manifest
+   ========================================= */
+
+.userMain {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.userMain main {
+  flex: 1;
+  padding: 40px 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.userMain main > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+/* Tabela Responsiva */
+.tableManifest {
+  width: 100%;
+  overflow-x: auto; /* Scroll horizontal em mobile */
+  background: var(--bg-card);
+  border-radius: var(--border-radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px; /* Força scroll se muito pequeno */
+}
+
+th, td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+th {
+  color: var(--primary-hover);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+tr:hover {
+  background-color: rgba(123, 44, 191, 0.1);
+}
+
+/* =========================================
+   7. Modal
+   ========================================= */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.modal > div:not(.modal-overlay) {
+  /* Assumindo que o conteúdo está em divs diretas, 
+     mas o componente fornecido não tem um container 'content' claro.
+     Estilizando o próprio .modal como container se ele tiver conteúdo direto, 
+     mas idealmente o componente Modal deveria ter um wrapper interno.
+     Abaixo aplico estilo aos elementos dentro do modal para simular um card */
+  
+  width: 100%;
+  max-width: 500px;
+  background-color: var(--bg-card);
+  padding: 30px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Ajuste específico para a estrutura atual do Modal.jsx */
+.modal {
+  background-color: rgba(15, 10, 20, 0.95); /* Fundo escuro cobrindo tudo */
+}
+
+.modal h2 {
+  margin-top: 0;
+  color: var(--primary-hover);
+}
+
+.modal input[type="checkbox"] {
+  width: auto;
+  margin-right: 10px;
+}
+
+.modal > div > div:last-child {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.modal button:first-child {
+  background-color: transparent;
+  border: 1px solid var(--danger);
+  color: var(--danger);
+}
+
+.modal button:first-child:hover {
+  background-color: var(--danger);
+  color: white;
+}
+
+/* =========================================
+   8. Admin Layout & Dashboard
+   ========================================= */
+
+/* Layout Grid para Admin */
+.admin-layout {
+  display: grid;
+  min-height: 100vh;
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas: 
+    "header header"
+    "aside content"
+    "footer footer";
+}
+
+.admin-layout > header {
+  grid-area: header;
+  z-index: 10;
+}
+
+.admin-layout > .footerMain {
+  grid-area: footer;
+}
+
+/* Sidebar (AsideAdmin) */
+.asideAdmin {
+  grid-area: aside;
+  background-color: var(--bg-card);
+  padding: 20px;
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.asideAdmin h1 {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: var(--text-muted);
+}
+
+.asideAdmin ul li {
+  margin-bottom: 15px;
+}
+
+.asideAdmin button {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  color: var(--text-main);
+  padding: 12px;
+}
+
+.asideAdmin button:hover {
+  background: rgba(123, 44, 191, 0.1);
+  color: var(--primary-hover);
+  border-left: 3px solid var(--primary);
+}
+
+/* Conteúdo Principal Admin (PanelAdmin, Settings, Report) */
+.panelAdmin, .reportAdmin, .settingsAdmin {
+  grid-area: content;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.panelAdmin > div h3 {
+  margin-top: 30px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+}
+
+/* Filtros do Painel */
+.panelAdmin input[type="text"], 
+.panelAdmin input[type="date"] {
+  display: inline-block;
+  width: auto;
+  margin-right: 10px;
+}
+
+.panelAdmin ul {
+  display: flex;
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.panelAdmin ul li {
+  display: flex;
+  align-items: center;
+  background: var(--bg-input);
+  padding: 5px 15px;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+}
+
+.panelAdmin ul li input {
+  margin: 0 8px 0 0;
+  width: auto;
+}
+
+/* Configurações Admin */
+.settingsAdmin > div {
+  background: var(--bg-card);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: var(--border-radius);
+}
+
+.settingsAdmin img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: var(--bg-input);
+  margin-bottom: 10px;
+}
+
+/* =========================================
+   9. Responsividade (Mobile)
+   ========================================= */
+
+@media (max-width: 768px) {
+  /* Ajuste Admin Layout para Mobile */
+  .admin-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas: 
+      "header"
+      "aside"
+      "content"
+      "footer";
+  }
+
+  .asideAdmin {
+    padding: 10px;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .asideAdmin ul {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding-bottom: 5px;
+  }
+  
+  .asideAdmin h1 {
+    display: none; /* Economizar espaço */
+  }
+
+  .asideAdmin button {
+    white-space: nowrap;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 8px 16px;
+    text-align: center;
+  }
+
+  .asideAdmin button:hover {
+    border-left: 1px solid var(--border-color);
+    background: var(--primary);
+    color: white;
+  }
+
+  /* Filtros Admin em Coluna */
+  .panelAdmin input, 
+  .panelAdmin ul {
+    width: 100%;
+    flex-direction: column;
+  }
+  
+  .panelAdmin ul li {
+    width: 100%;
+  }
+
+  /* Geral */
+  header {
+    padding: 0 20px;
+  }
+  
+  .homeList > div {
+    flex-direction: column;
+  }
+}

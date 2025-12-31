@@ -94,31 +94,47 @@ function UserForm() {
                 <h2>Crie sua conta</h2>
                 <span>já possui uma conta? <Link to="/loginForm">Entre aqui</Link></span>
                 <form onSubmit={createUser}>
-                    <label htmlFor="name">Nome completo</label>
-                    <input type="text" name="name" id="name" placeholder="Seu nome completo" required />
+                    <div>    
+                        <label htmlFor="name">Nome completo</label>
+                        <input type="text" name="name" id="name" placeholder="Seu nome completo" required />
+                    </div>
 
-                    <label htmlFor="cpf">Cpf (apenas números)</label>
-                    <input type="number" name="cpf" id="cpf" placeholder="Seu cpf" required />
+                    <div>
+    
+                        <label htmlFor="cpf">Cpf (apenas números)</label>
+                        <input type="number" name="cpf" id="cpf" placeholder="Seu cpf" required />
+                    </div>  
 
-                    <label htmlFor="email">E-mail</label>
-                    <input type="email" name="email" id="email" placeholder="Seu melhor e-mail" required />
+                    <div>
+                        <label htmlFor="email">E-mail</label>
+                        <input type="email" name="email" id="email" placeholder="Seu melhor e-mail" required />
+                    </div>
 
-                    <label htmlFor="telefone">Telefone</label>
-                    <input type="tel" name="telefone" id="telefone" placeholder="(XX) XXXXX-XXXX" required />
+                    <div>
+                        <label htmlFor="telefone">Telefone</label>
+                        <input type="tel" name="telefone" id="telefone" placeholder="(XX) XXXXX-XXXX" required />
+                    </div>
 
-                    <label htmlFor="nascimento">Data de nascimento</label>
-                    <input type="date" name="nascimento" id="nascimento" required />
+                    <div>
+                        <label htmlFor="nascimento">Data de nascimento</label>
+                        <input type="date" name="nascimento" id="nascimento" required />
+                    </div>
 
-                    <label htmlFor="endereco">Endereço atual</label>
-                    <input type="text" name="endereco" id="endereco" placeholder="Seu endereço completo" required onClick={localData}/>
+                    <div>
+                        <label htmlFor="endereco">Endereço atual</label>
+                        <input type="text" name="endereco" id="endereco" placeholder="Seu endereço completo" required onClick={localData}/>
+                    </div>
 
-                    <label htmlFor="password">Senha</label>
-                    <input type="password" name="password" id="password" placeholder="Crie uma senha" required />
+                    <div>
+                        <label htmlFor="password">Senha</label>
+                        <input type="password" name="password" id="password" placeholder="Crie uma senha" required />
+                    </div>
 
-                    <label htmlFor="confirmPassword">Confirme sua senha</label>
-                    <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirme sua senha" required />
-
-                    <button onClick={showPass}>visualizar</button>
+                    <div>
+                        <label htmlFor="confirmPassword">Confirme sua senha</label>
+                        <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirme sua senha" required />
+                        <button onClick={showPass}>visualizar</button>
+                    </div>
 
                     <button type="submit">Cadastrar</button>
                 </form>
