@@ -1,0 +1,87 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/dist/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  
+}
+
+model Usuario {
+  id Int @id @default(autoincrement())
+
+  nome String
+  cpf Int @unique
+  email String @unique
+  telefone Int @unique
+  nascimento DateTime
+  endereco Endereco[]
+  manifestacoes Manifestacao[]
+  senhaHash String
+}
+
+model Endereco{
+  id Int @id @default(autoincrement())
+
+  pais String
+  estado String
+  cidade String
+
+  usuarioId Int
+  usuario Usuario @relation(fields: [usuarioId], references: [id])
+}
+
+model Instituicao{
+  id Int @id @default(autoincrement())
+
+  nome String  @unique
+  cnpj Int @unique
+  sede String
+
+  admins Admin[]
+  manifestacoes Manifestacao[]
+}
+
+model Admin{
+  id Int @id @default(autoincrement())
+
+  nome String
+  email String @unique
+  cpf Int @unique
+  senhaHash String
+  cargo String
+
+  instituicaoId Int
+  instituicao Instituicao @relation(fields: [instituicaoId], references: [id])
+}
+
+model Manifestacao{
+  id Int @id  @default(autoincrement())
+  criado DateTime @default(now())
+
+  usuarioId Int
+  usuario Usuario  @relation(fields: [usuarioId], references: [id])
+
+  instituicaoId Int
+  instituicao Instituicao @relation(fields: [instituicaoId], references: [id])
+
+  conteudo String
+
+  links Links[]
+}
+
+model Links{
+  id Int @id @default(autoincrement())
+
+  link String @unique
+
+  manifestacaoId Int
+  manifestacao Manifestacao @relation(fields: [manifestacaoId], references: [id])
+}

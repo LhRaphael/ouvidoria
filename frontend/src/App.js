@@ -24,6 +24,7 @@ function App() {
             <Route path='/loginForm' element={<LoginForm/>}/>
             <Route path='/changePass' element={<ChangePass/>}/>
             <Route path='/adminForm' element={<AdminForm/>}/>
+            <Route path="*" element={<h1>Erro 404: Página não encontrada</h1>} />
         </Routes>
       </BrowserRouter>
     </AppProvider>
