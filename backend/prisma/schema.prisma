@@ -18,9 +18,9 @@ model Usuario {
   id Int @id @default(autoincrement())
 
   nome String
-  cpf Int @unique
+  cpf String @unique
   email String @unique
-  telefone Int @unique
+  telefone String @unique
   nascimento DateTime
   endereco Endereco[]
   manifestacoes Manifestacao[]
@@ -42,7 +42,7 @@ model Instituicao{
   id Int @id @default(autoincrement())
 
   nome String  @unique
-  cnpj Int @unique
+  cnpj String @unique
   sede String
 
   admins Admin[]
@@ -54,7 +54,7 @@ model Admin{
 
   nome String
   email String @unique
-  cpf Int @unique
+  cpf String @unique
   senhaHash String
   cargo String
 
@@ -84,4 +84,15 @@ model Links{
 
   manifestacaoId Int
   manifestacao Manifestacao @relation(fields: [manifestacaoId], references: [id])
+}
+
+model Resumo{
+  id Int @id @default(autoincrement())
+
+  criacao DateTime
+  conteudo String
+
+  instituicaoId Int
+  instituicao Instituicao @relation(fields: [instituicaoId], references: [id])
+
 }
