@@ -1,15 +1,13 @@
 import express from "express";
+import cors from "cors";
+import { usuarioRouter } from "./router/usuarioRouter";
 
 const app = express();
 const PORT = 3000;
 
-// middleware para JSON
+app.use(cors());
 app.use(express.json());
-
-// rota simples
-app.get("/", (req, res) => {
-  res.send("Servidor Express funcionando 🚀");
-});
+app.use("/usuarios", usuarioRouter);
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);

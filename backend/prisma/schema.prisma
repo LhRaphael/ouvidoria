@@ -47,6 +47,7 @@ model Instituicao{
 
   admins Admin[]
   manifestacoes Manifestacao[]
+  resumos Resumo[]
 }
 
 model Admin{
