@@ -2,7 +2,7 @@ import { prisma } from "../lib/prisma";
 import { hashPassword, verifyPassword } from "../lib/bycript";
 
 export class UsuarioService {
-  async findById(id: string) {
+  async findById(id: number) {
     return await prisma.usuario.findUnique({
       where: { id },
     });
@@ -42,9 +42,9 @@ export class UsuarioService {
 
     await prisma.endereco.create({
       data: {
-        pais: endereco[0],
-        estado: endereco[1],
-        cidade: endereco[2],
+        pais: String(endereco[0]),
+        estado: String(endereco[1]),
+        cidade: String(endereco[2]),
         usuarioId: atual.id,
       },
     });

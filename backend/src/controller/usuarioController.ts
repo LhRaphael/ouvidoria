@@ -3,9 +3,9 @@ import { UsuarioService } from "../service/usuarioService";
 const usuarioService = new UsuarioService();
 
 export class UsuarioController {
-    async getById(id: string) {
+    async getById(id: String) {
         try{
-            const usuario = await usuarioService.findById(id);
+            const usuario = await usuarioService.findById(Number(id));
             return usuario;
         }
         catch(error){
