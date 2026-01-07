@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 import { validationEmail, validationPass, validationCPF} from "../utils/validations";
 import { seePassword } from "../utils/seePass";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { use, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function UserForm() {
@@ -39,13 +39,13 @@ function UserForm() {
         });
         
     }
-    const createUser = (e) =>{
-        e.preventDefault();
-        
+    const createUser = async (e) =>{
+        setLoading(true);
+        console.log("Criando usuário...");
         const formData = new FormData(e.target);
         const passOne = formData.get('password');
         const passTwo = formData.get('confirmPassword');
-        const cpf = formData.get('cpf');
+        const cpf = String(formData.get('cpf'));
         const email = formData.get('email');
 
         const validEmail = validationEmail(email);
@@ -67,15 +67,38 @@ function UserForm() {
         const data = {
             classe: "user",
             nome: formData.get('name'),
-            cpf: formData.get('cpf'),
+            cpf: cpf,
             email: email,
-            telefone: formData.get('telefone'),
-            nascimento: formData.get('nascimento'),
+            telefone: String(formData.get('telefone')),
+            nascimento: formData.get('nascimento')+"T00:00:00.000Z",
             endereco: formData.get('endereco'),
             senha: passOne
         }
-        console.log("Usuário criado com sucesso:", data);
+        console.log("passou aqui")
+        const user = await fetch("http://localhost:3001/usuarios", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        console.log(user)
+
+        setLoading(false);
+        if(!user.ok){
+            return alert("Erro ao criar usuário. Tente novamente.");
+        }
+
         navigate("/loginForm")
+    }
+
+    const pending = (e) =>{
+        e.preventDefault();
+
+        if(!loading){
+            createUser(e);
+        }
     }
 
     const showPass = (e)=>{
@@ -83,7 +106,8 @@ function UserForm() {
         const pass = "password"
         const confPass = "confirmPassword"
 
-        seePassword(pass,confPass)
+        seePassword(pass)
+        seePassword(confPass)
         
     }
 
@@ -93,7 +117,7 @@ function UserForm() {
             <main>
                 <h2>Crie sua conta</h2>
                 <span>já possui uma conta? <Link to="/loginForm">Entre aqui</Link></span>
-                <form onSubmit={createUser}>
+                <form onSubmit={pending}>
                     <div>    
                         <label htmlFor="name">Nome completo</label>
                         <input type="text" name="name" id="name" placeholder="Seu nome completo" required />
@@ -136,7 +160,7 @@ function UserForm() {
                         <button onClick={showPass}>visualizar</button>
                     </div>
 
-                    <button type="submit">Cadastrar</button>
+                    <button type="submit" id="cadastraUsuario" name="cadastraUsuario" disabled={loading}>{loading ? "Cadastrando..." : "Cadastrar"}</button>
                 </form>
             </main>
             <aside>

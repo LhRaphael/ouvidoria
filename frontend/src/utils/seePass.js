@@ -1,12 +1,9 @@
-export function seePassword(passId, confirmPassId){
+export function seePassword(passId){
     const passwordInput = document.getElementById(passId);
-    const confirmPasswordInput = document.getElementById(confirmPassId);
 
-    if(passwordInput.type === "password" && confirmPasswordInput.type === "password"){
+    if(passwordInput.type === "password"){
         passwordInput.type = "text";
-        confirmPasswordInput.type = "text";
     } else {
         passwordInput.type = "password";
-        confirmPasswordInput.type = "password";
     }
 }
