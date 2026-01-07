@@ -16,31 +16,30 @@ function UserForm() {
         event.target.value = "Localizando..."
         navigator.geolocation.getCurrentPosition(async (position)=>{
             const {latitude, longitude} = position.coords;
-
+            
             const apiKey = "747419face034afea9c73539b6069f75"
             const url = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${apiKey}`
-
+            
             const response = await fetch(url);
             const data = await response.json()
             const address = data.results[0].components;
-
+            
             const locateData = {
                 pais: address.country,
                 estado: address.state,
                 cidade: address.city || address.town || address.village,
             }
-
+            
             setLoading(false);
             setLocation(locateData)
             console.log(location);
-
+            
             const value = `${locateData.pais}, ${locateData.estado}, ${locateData.cidade}`
             event.target.value = value
         });
         
     }
     const createUser = async (e) =>{
-        setLoading(true);
         console.log("Criando usuário...");
         const formData = new FormData(e.target);
         const passOne = formData.get('password');
@@ -55,11 +54,11 @@ function UserForm() {
         if (!validEmail) {
             return alert("E-mail inválido. Por favor, insira um e-mail válido.");
         }
-
+        
         if (!validPass) {
             return alert("As senhas não coincidem ou não atendem aos requisitos.");
         }
-
+        
         if (!validCPF) {
             return alert("CPF inválido. Por favor, insira um CPF válido.");
         }
@@ -74,6 +73,7 @@ function UserForm() {
             endereco: formData.get('endereco'),
             senha: passOne
         }
+        setLoading(true);
         console.log("passou aqui")
         const user = await fetch("http://localhost:3001/usuarios", {
             method: "POST",

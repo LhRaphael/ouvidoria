@@ -6,7 +6,7 @@ import { useAppContext } from "../utils/Context";
 
 function LoginForm() {
     const navigate = useNavigate()
-    const { user, setUser } = useAppContext()
+    const { setUser } = useAppContext()
 
     const showPass = (e)=>{
         e.preventDefault()
@@ -31,8 +31,9 @@ function LoginForm() {
 
         try{
             const userData = await response.json()
+            console.log(userData)
             setUser(userData)
-            navigate(`/${userData.classe}Page`)
+            navigate(`/${userData.class}Page`)
         }catch(err){
             return alert("Erro ao fazer login. Verifique suas credenciais."+err)
         }

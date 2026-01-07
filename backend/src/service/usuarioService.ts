@@ -25,6 +25,8 @@ export class UsuarioService {
         senha: string 
     }) {
 
+      console.log(data.senha);
+
     const usuario = {
         nome: data.nome,
         cpf: data.cpf,
@@ -53,11 +55,13 @@ export class UsuarioService {
   }
     async verifyCredentials(email: string, password: string) {
     const usuario = await this.findByEmail(email);
+   
     if (!usuario) {
       return null;
     }
 
     const isValid = await verifyPassword(password, usuario.senhaHash);
+    
     if (!isValid) {
       return null;
     }

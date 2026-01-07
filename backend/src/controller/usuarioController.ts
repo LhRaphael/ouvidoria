@@ -43,6 +43,9 @@ export class UsuarioController {
     async verifyCredentials(email: string, password: string) {
         try{
             const usuario = await usuarioService.verifyCredentials(email, password);
+            if(!usuario){
+                throw new Error("Invalid credentials");
+            }
             return usuario;
         }
         catch(error){

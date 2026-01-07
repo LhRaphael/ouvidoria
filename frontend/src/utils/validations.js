@@ -6,7 +6,7 @@ export function validationPass(password0, password1) {
     if (password0 !== password1) {
         return false;
     }
-  const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+  const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&/*-+."'#()]).{8,}$/;
   return regex.test(password0);
 }
 
