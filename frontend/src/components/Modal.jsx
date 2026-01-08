@@ -1,11 +1,45 @@
-import { useState } from "react";
 import { useAppContext } from "../utils/Context";
 
 function Modal(){
     const { manageModal } = useAppContext();
+    const { user } = useAppContext();
+
+    const saveManifestation = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+
+        const data = {
+            tipo: formData.get("type"),
+            descricao: formData.get("descriptionModal"),
+            arquivo: formData.get("fileModal"),
+            anonimo: formData.get("anonimo") === "on" ? true : false,
+            usuario: user.id,
+        }
+
+        try {
+            const response = await fetch("http://localhost:3001/manifestacao", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                alert("Manifestação registrada com sucesso!");
+                manageModal();
+            } else {
+                alert("Erro ao registrar manifestação.");
+            }
+        } catch (error) {
+            console.error("Erro na requisição:", error);
+            alert("Erro ao registrar manifestação.");
+        }
+    
+    }
 
     return (
-        <div className="modal">
+        <form className="modal" onSubmit={saveManifestation}>
             <h2>Registrar nova manifestação</h2>
             <div>
                 <span>Selecionar Categória</span>
@@ -31,9 +65,9 @@ function Modal(){
             </div>
             <div>
                 <button onClick={manageModal}>Cancelar</button>
-                <button>Enviar</button>
+                <input type="submit" value="Enviar" />
             </div>
-        </div>
+        </form>
     )
 }
 

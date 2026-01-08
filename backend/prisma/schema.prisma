@@ -73,6 +73,7 @@ model Manifestacao{
   instituicao Instituicao @relation(fields: [instituicaoId], references: [id])
 
   conteudo String
+  tipo String
 
   links Links[]
 }
