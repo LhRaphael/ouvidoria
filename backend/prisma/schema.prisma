@@ -58,8 +58,8 @@ model Admin{
   senhaHash String
   cargo String
 
-  instituicaoId Int
-  instituicao Instituicao @relation(fields: [instituicaoId], references: [id])
+  instituicaoCNPJ String
+  instituicao Instituicao @relation(fields: [instituicaoCNPJ], references: [cnpj])
 }
 
 model Manifestacao{

@@ -1,13 +1,16 @@
 import { validationEmail, validationPass } from "../utils/validations";
 import { seePassword } from "../utils/seePass";
+import { useNavigate } from "react-router-dom";
 
 function RegisterAdmin({ cnpj }) {
+    const navigate = useNavigate();
 
      const showPass = (e) =>{
         e.preventDefault()
         const pass = "adminPassword"
         const confPass = "adminPasswordTwo"
-        seePassword(pass,confPass)
+        seePassword(pass)
+        seePassword(confPass)
     }
 
     const submitAdminUser = (event) => {
@@ -30,13 +33,28 @@ function RegisterAdmin({ cnpj }) {
         }
 
         const data = {
-            classe: "admin",
-            cnpj: cnpj,
-            nome: formData.get('adminName'),
-            email: email,
-            cpf: formData.get('adminCpf'),
-            senha: passOne
+           nome: formData.get('adminName'),
+           cpf: formData.get('adminCpf'),
+           email: formData.get('adminEmail'),
+           senha: formData.get('adminPassword'),
+           cargo: 'Administrador Principal',
+           instituicaoCnpj: cnpj
         }
+
+        const response = fetch('http://localhost:3001/admin/', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (!response.ok) {
+            return alert("Erro ao cadastrar administrador. Tente novamente.");
+        }
+
+        alert("Administrador cadastrado com sucesso!");
+        navigate('/login');
     }
 
     return (

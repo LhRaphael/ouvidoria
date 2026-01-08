@@ -29,6 +29,19 @@ function AdminForm() {
             institutionSede: formData.get('institutionSede')
         }
 
+        const response = fetch("http://localhost:3001/instituicoes", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        if(!response.ok) {
+            alert("Erro ao cadastrar instituição. Tente novamente.")
+            return navigate("/adminform");
+        }
+
         setNextStap(true);
     }
 

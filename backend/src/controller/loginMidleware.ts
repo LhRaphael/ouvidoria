@@ -1,4 +1,5 @@
 import { UsuarioController } from "./usuarioController";
+import { AdminController } from "./adminController";
 
 const usuarioController = new UsuarioController();
 
@@ -20,15 +21,16 @@ export class LoginMiddleware {
     }
 
     async validateAdminLogin(email: string, password: string) {
-        try { // corrigir para admin mais tarde
-            const usuario = await usuarioController.verifyCredentials(email, password);
-            const dataUsuario = {
+        try { 
+            const adminController = new AdminController();
+            const admin = await adminController.getAdminByCredentials(email, password);
+            const dataAdmin = {
                 class: "admin",
-                id: usuario.id,
-                nome: usuario.nome,
-                email: usuario.email
+                id: admin.id,
+                nome: admin.nome,
+                email: admin.email
             };
-            return dataUsuario;
+            return dataAdmin;
         } catch (error) {
             throw error;
         }

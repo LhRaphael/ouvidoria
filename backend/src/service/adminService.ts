@@ -17,6 +17,16 @@ export class AdminService {
         return admins;
     }
 
+    async findByEmail(email: string) {
+        const admin = await prisma.admin.findUnique({
+            where: {
+                email,
+            },
+        });
+
+        return admin;
+    }
+
     async delete(id: number) {
         await prisma.admin.delete({
             where: {
@@ -32,7 +42,7 @@ export class AdminService {
             email: string;
             senha: string;
             cargo: string;
-            instituicaoId: number;
+            instituicaoCnpj: string;
         }
     ) {
         const hashedPassword = await hashPassword(data.senha);
@@ -43,7 +53,7 @@ export class AdminService {
             email: data.email,
             senhaHash: hashedPassword,
             cargo: data.cargo,
-            instituicaoId: data.instituicaoId,
+            instituicaoCNPJ: data.instituicaoCnpj,
         }
 
         const atual = await prisma.admin.create({
