@@ -10,7 +10,7 @@ function AdminForm() {
     const navigate = useNavigate();
     const [cnpj, setCnpj] = useState(0);
 
-    const submitInstitution = (event) => {
+    const submitInstitution = async (event) => {
         event.preventDefault();
         
         const formData = new FormData(event.target);
@@ -24,18 +24,20 @@ function AdminForm() {
         setCnpj(cnpj);
 
         const data = {
-            institutionName: formData.get('institutionName'),
-            institutionCnpj: cnpj,
-            institutionSede: formData.get('institutionSede')
+            nome: formData.get('institutionName'),
+            cnpj: cnpj,
+            sede: formData.get('institutionSede'),
         }
 
-        const response = fetch("http://localhost:3001/instituicoes", {
+        const response = await fetch("http://localhost:3001/instituicoes", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(data)
         });
+
+        console.log(response);
 
         if(!response.ok) {
             alert("Erro ao cadastrar instituição. Tente novamente.")

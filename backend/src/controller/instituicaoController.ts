@@ -9,6 +9,12 @@ export class InstituicaoController {
         sede: string;
     }) {
         try{
+            const instituicaoCnpj = await instituicaoService.findByCnpj(data.cnpj);
+            if(instituicaoCnpj){
+                return true;
+            }
+
+            console.log(data);
             const instituicao = await instituicaoService.create(data);
             return instituicao;
         }

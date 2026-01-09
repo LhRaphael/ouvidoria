@@ -13,7 +13,7 @@ function RegisterAdmin({ cnpj }) {
         seePassword(confPass)
     }
 
-    const submitAdminUser = (event) => {
+    const submitAdminUser = async (event) => {
         event.preventDefault();
 
         const formData = new FormData(event.target);
@@ -41,7 +41,7 @@ function RegisterAdmin({ cnpj }) {
            instituicaoCnpj: cnpj
         }
 
-        const response = fetch('http://localhost:3001/admin/', {
+        const response = await fetch('http://localhost:3001/admins/', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -49,12 +49,14 @@ function RegisterAdmin({ cnpj }) {
             body: JSON.stringify(data)
         });
 
+        console.log(response);
+
         if (!response.ok) {
             return alert("Erro ao cadastrar administrador. Tente novamente.");
         }
 
         alert("Administrador cadastrado com sucesso!");
-        navigate('/login');
+        navigate('/loginForm');
     }
 
     return (

@@ -1,6 +1,8 @@
 import { AdminService } from "../service/adminService";
+import { PedidoService } from "../service/pedidoService";
 
 const adminService = new AdminService();
+const pedidoService = new PedidoService();
 
 export class AdminController {
     async getAdminById(id: string) {
@@ -53,6 +55,18 @@ export class AdminController {
     ) {
         try {
             const admin = await adminService.create(data);
+            const funcionarios = await adminService.findAllByCnpj(data.instituicaoCnpj);
+            if(funcionarios.length >= 1){
+                //ele vai pra tabela de pedidos
+                data.cargo = "PENDENTE";
+                const pedidoData = {
+                    adminCPF: data.cpf,
+                    instituicaoCNPJ: data.instituicaoCnpj
+                }
+                await pedidoService.create(pedidoData);
+            }
+            
+            console.log(data);
             return admin;
         } catch (error) {
             throw error;

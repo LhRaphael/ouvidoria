@@ -17,6 +17,26 @@ export class AdminService {
         return admins;
     }
 
+    async findByCpf(cpf: string) {
+        const admin = await prisma.admin.findUnique({
+            where: {
+                cpf,
+            },
+        });
+
+        return admin;
+    }
+
+    async findAllByCnpj(cnpj: string) {
+        const admin = await prisma.admin.findMany({
+            where: {
+                instituicaoCNPJ: cnpj,
+            },
+        });
+
+        return admin;
+    }
+
     async findByEmail(email: string) {
         const admin = await prisma.admin.findUnique({
             where: {

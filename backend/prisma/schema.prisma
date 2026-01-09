@@ -47,6 +47,7 @@ model Instituicao{
   admins Admin[]
   manifestacoes Manifestacao[]
   resumos Resumo[]
+  pedidos Pedido[]
 }
 
 model Admin{
@@ -60,6 +61,8 @@ model Admin{
 
   instituicaoCNPJ String
   instituicao Instituicao @relation(fields: [instituicaoCNPJ], references: [cnpj])
+
+  pedido Pedido?
 }
 
 model Manifestacao{
@@ -96,4 +99,15 @@ model Resumo{
   instituicaoId Int
   instituicao Instituicao @relation(fields: [instituicaoId], references: [id])
 
+}
+
+model Pedido{
+  id Int @id @default(autoincrement())
+  data DateTime @default(now())
+
+  instituicaoCNPJ String
+  instituicao Instituicao @relation(fields: [instituicaoCNPJ], references: [cnpj])
+
+  adminCPF String @unique
+  admin Admin @relation(fields: [adminCPF], references: [cpf])
 }

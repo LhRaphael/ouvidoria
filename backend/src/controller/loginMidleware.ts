@@ -1,7 +1,9 @@
 import { UsuarioController } from "./usuarioController";
 import { AdminController } from "./adminController";
+import { PedidoController } from "./pedidoController";
 
 const usuarioController = new UsuarioController();
+const pedidoController = new PedidoController();
 
 export class LoginMiddleware {
     async validateLogin(email: string, password: string) {
@@ -28,7 +30,9 @@ export class LoginMiddleware {
                 class: "admin",
                 id: admin.id,
                 nome: admin.nome,
-                email: admin.email
+                email: admin.email,
+                cargo: admin.cargo,
+                cpf: admin.cpf
             };
             return dataAdmin;
         } catch (error) {
@@ -42,13 +46,27 @@ export class LoginMiddleware {
             if(user){
                 return user;
             }
-            const admin = await this.validateAdminLogin(email, password);
-            if(admin){
-                return admin;
-            }
             throw new Error("Invalid credentials");
         } catch (error) {
-            throw error;
+
+            try {
+                const admin = await this.validateAdminLogin(email, password);
+                const verificar = await pedidoController.getByCpf(admin.cpf);
+                console.log(verificar); 
+
+                if(verificar){
+                    throw new Error("Usuário com pedido pendente");
+                }
+
+                // só vai retornar o admin se ele não tiver um pedido associado
+                if(admin){
+                    return admin;
+                }
+
+                throw new Error("Invalid credentials");
+            } catch (adminError) {
+                throw adminError;
+            }
         }
     }
 }
