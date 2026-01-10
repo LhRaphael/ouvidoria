@@ -17,6 +17,16 @@ export class InstituicaoService {
         return instituicao;
     }
 
+    async findByName(nome: string) {
+        const instituicao = await prisma.instituicao.findFirst({
+            where: {
+                nome,
+            },
+        });
+
+        return instituicao;
+    }
+
     async findByCnpj(cnpj: string) {
         const instituicao = await prisma.instituicao.findUnique({
             where: {

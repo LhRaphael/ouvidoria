@@ -23,7 +23,7 @@ export class InstituicaoController {
         }   
     }
 
-    async getById(id: String) {
+    async getById(id: string) {
         try{
             const instituicao = await instituicaoService.findById(Number(id));
             return instituicao;
@@ -33,6 +33,16 @@ export class InstituicaoController {
         }   
     }
 
+    async getByName(name: string) {
+        try{
+            const instituicao = await instituicaoService.findByName(name);
+            return instituicao;
+        }
+        catch(error){
+            throw error;
+        }   
+    }
+            
     async getByCnpj(cnpj: string) {
         try{
             const instituicao = await instituicaoService.findByCnpj(cnpj);
