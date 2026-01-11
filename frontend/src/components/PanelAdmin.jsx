@@ -6,7 +6,7 @@ function PanelAdmin() {
     return (
         <main className="panelAdmin">
             <h2>Painel de manifestações</h2>
-            <TableManifest classUser={"admin"} id={user.cnpj} />
+            <TableManifest classUser={"admin"} id={user.instituicao} />
             <div>
                 <h3>Filtros</h3>
                 <div>

@@ -18,7 +18,7 @@ function UserMain() {
                     <h2>Minhas manifestações</h2>
                     <button onClick={manageModal}>Nova manifestação</button>
                 </div>
-                <TableManifest classUser={"user"} id={user.cpf} />
+                <TableManifest classUser={"usuario"} id={user.id} />
             </main>
             {isModalOpen && <Modal />}
             <Footer/>

@@ -20,6 +20,16 @@ export class ManifestacaoController {
         }   
     }
 
+    async findByCnpj(cnpj: string) {
+        try{
+            const manifestacoes = await manifestacaoService.findByCnpj(cnpj);
+            return manifestacoes;
+        }
+        catch(error){
+            throw error;
+        }   
+    }
+
     async getByTipo(tipo: string) {
         try{
             const manifestacoes = await manifestacaoService.findByTipo(tipo);

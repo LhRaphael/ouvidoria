@@ -12,7 +12,7 @@ manifestacaoRouter.get('/usuario/:id', async (req, res) => {
     return res.json(await manifestacaoController.getByUsuarioId(Number(req.params.id)));
 });
 
-manifestacaoRouter.get('/instituicao/:id', async (req, res) => {
+manifestacaoRouter.get('/admin/:id', async (req, res) => {
     return res.json(await manifestacaoController.getByInstituicaoId(Number(req.params.id)));
 });
 

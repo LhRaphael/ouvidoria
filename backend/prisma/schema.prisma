@@ -78,6 +78,7 @@ model Manifestacao{
   conteudo String
   tipo String
   anonimo Boolean
+  status String @default("Pendente")
 
   links Links[]
 }

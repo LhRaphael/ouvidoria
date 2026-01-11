@@ -1,18 +1,21 @@
 import { useState, useEffect } from "react";
+import { useAppContext } from "../utils/Context";
 
 function TableManifest({classUser, id}) {
     const [manifests, setManifests] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const { reloadManifestacoes, setReloadManifestacoes } = useAppContext();
 
     const fetchManifests = async () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch(`http://localhost:3001/manifests/${classUser}/${id}`);
+            const response = await fetch(`http://localhost:3001/manifestacoes/${classUser}/${id}`);
             if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
             const data = await response.json();
             setManifests(Array.isArray(data) ? data : []);
+            console.log("Manifestações buscadas:", data);
         } catch (err) {
             console.error("Erro ao buscar manifestações:", err);
             setError(err.message || "Erro desconhecido");
@@ -22,9 +25,21 @@ function TableManifest({classUser, id}) {
         }
     }
 
+    const reloadData = () => {
+        if(reloadManifestacoes){
+            fetchManifests();
+            setReloadManifestacoes(false);
+        }
+    }
+    
+    useEffect(() => {
+        reloadData();
+    }, [reloadManifestacoes]);
+
     useEffect(() => {
         if (classUser && id) fetchManifests();
     }, [classUser, id]);
+    
     
     return (
         <div className="tableManifest">

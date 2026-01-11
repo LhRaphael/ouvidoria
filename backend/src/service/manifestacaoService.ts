@@ -22,6 +22,18 @@ export class ManifestacaoService {
         return manifest;
     }
 
+    async findByCnpj(cnpj: string) {
+        const manifestacoes = await prisma.manifestacao.findMany({
+            where: {
+                instituicao: {
+                    cnpj,
+                },
+            },
+        });
+
+        return manifestacoes;
+    }
+
     async findByTipo(tipo: string) {
         const manifestacoes = await prisma.manifestacao.findMany({
             where: {

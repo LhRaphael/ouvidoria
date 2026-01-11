@@ -93,6 +93,13 @@ export class AdminService {
         if (!admin) {
             return null;
         }
+        const instituicao = await prisma.instituicao.findUnique({
+            where: {
+                cnpj: admin.instituicaoCNPJ,
+            },
+        }); 
+
+        const data = { ...admin, instituicaoId: instituicao?.id };
 
         const isPasswordValid = await verifyPassword(password, admin.senhaHash);
 
@@ -100,6 +107,6 @@ export class AdminService {
             return null;
         }
 
-        return admin;
+        return data;
     }
 }

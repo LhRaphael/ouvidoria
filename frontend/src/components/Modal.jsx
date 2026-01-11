@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 function Modal(){
     const { manageModal } = useAppContext();
     const { user } = useAppContext();
+    const { setReloadManifestacoes } = useAppContext();
     const [instituicoes, setInstituicoes] = useState([])
     const [instituicao, setInstituicao] = useState("")
     const [instituicaoId, setInstituicaoId] = useState(null)
@@ -105,6 +106,7 @@ function Modal(){
             if (response.ok) {
                 alert("Manifestação registrada com sucesso!");
                 manageModal();
+                setReloadManifestacoes(prev => !prev);
             } else {
                 alert("Erro ao registrar manifestação.");
             }
