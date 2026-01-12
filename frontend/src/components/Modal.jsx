@@ -123,10 +123,10 @@ function Modal(){
             <div>
                 <span>Selecionar Categória</span>
                 <select name="type" id="typeSelectModal">
-                    <option value="reclamacao">Reclamação</option>
-                    <option value="elogio">Elogio</option>
-                    <option value="sugestao">Sugestão</option>
-                    <option value="denuncia">Denúncia</option>
+                    <option value="Reclamação">Reclamação</option>
+                    <option value="Elogio">Elogio</option>
+                    <option value="Sugestão">Sugestão</option>
+                    <option value="Denúncia">Denúncia</option>
                 </select>
             </div>
             <div>

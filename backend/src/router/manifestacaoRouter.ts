@@ -8,6 +8,10 @@ manifestacaoRouter.get('/:id', async (req, res) => {
     return res.json(await manifestacaoController.getById(Number(req.params.id)));
 });
 
+manifestacaoRouter.get('/simple/:id', async (req, res) => {
+    return res.json(await manifestacaoController.findByIdSimple(Number(req.params.id)));
+});
+
 manifestacaoRouter.get('/usuario/:id', async (req, res) => {
     return res.json(await manifestacaoController.getByUsuarioId(Number(req.params.id)));
 });

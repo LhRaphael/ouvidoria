@@ -74,6 +74,44 @@ export class ManifestacaoService {
         return manifestacao;
     }
 
+    async findByIdSimple(id: number) {
+        const manifestacao = await prisma.manifestacao.findUnique({
+            where: {
+                id,
+            }
+        });
+
+        const usuario = manifestacao?.anonimo ? null : await prisma.usuario.findUnique({
+            where: {
+                id: manifestacao?.usuarioId,
+            },
+            select: {
+                nome: true,
+            },
+        });
+
+        const instituicao = await prisma.instituicao.findUnique({
+            where: {
+                id: manifestacao?.instituicaoId,
+            },
+            select: {
+                nome: true,
+            },
+        });
+
+        const data = {
+            id: manifestacao?.id,
+            tipo: manifestacao?.tipo,
+            conteudo: manifestacao?.conteudo,
+            data: manifestacao?.criado,
+            anonimo: manifestacao?.anonimo,
+            usuario: usuario?.nome || "Anônimo",
+            instituicao: instituicao?.nome || "Instituição não encontrada",
+        }
+
+        return data;
+    }
+
     async findAll() {
         const manifestacoes = await prisma.manifestacao.findMany();
         return manifestacoes;

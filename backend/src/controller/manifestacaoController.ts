@@ -20,6 +20,16 @@ export class ManifestacaoController {
         }   
     }
 
+    async findByIdSimple(id: number) {
+        try{
+            const manifestacao = await manifestacaoService.findByIdSimple(id);
+            return manifestacao;
+        }
+        catch(error){
+            throw error;
+        }   
+    }
+
     async findByCnpj(cnpj: string) {
         try{
             const manifestacoes = await manifestacaoService.findByCnpj(cnpj);
@@ -52,6 +62,7 @@ export class ManifestacaoController {
 
     async getByInstituicaoId(instituicaoId: number) {
         try{
+            console.log("Controller: ", instituicaoId);
             const manifestacoes = await manifestacaoService.findByInstituicaoId(instituicaoId);
             return manifestacoes;
         }
