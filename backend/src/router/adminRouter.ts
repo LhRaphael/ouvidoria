@@ -16,6 +16,10 @@ adminRouter.get('/email/:email', async (req, res) => {
   return res.json(await adminController.getAdminByEmail(req.params.email));
 });
 
+adminRouter.get('/cnpj/:cnpj', async (req, res) => {
+  return res.json(await adminController.getAllAdminsByCnpj(req.params.cnpj));
+});
+
 adminRouter.get('/', async (req, res) => {
   return res.json(await adminController.getAllAdmins());
 });

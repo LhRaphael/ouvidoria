@@ -109,4 +109,18 @@ export class AdminService {
 
         return data;
     }
+
+    async updateCargo(id: number, cargo: string) {
+        const updatedAdmin = await prisma.admin.update({
+            where: {
+                id,
+            },
+            data: {
+                cargo,
+            },
+        });
+
+        return updatedAdmin;
+    }
+    
 }

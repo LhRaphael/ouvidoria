@@ -73,4 +73,13 @@ export class AdminController {
         }
     }   
 
+    async getAllAdminsByCnpj(cnpj: string) {
+        try {
+            const admins = await adminService.findAllByCnpj(cnpj);
+            return admins;
+        } catch (error) {
+            throw error;
+        }
+    }
+
 }

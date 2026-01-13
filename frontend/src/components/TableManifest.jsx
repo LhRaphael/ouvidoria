@@ -20,7 +20,6 @@ function TableManifest({classUser, id, filter}) {
             const data = await response.json();
             setManifests(Array.isArray(data) ? data : []);
             setFilteredManifests(Array.isArray(data) ? data : []);
-            console.log("Manifestações buscadas:", data);
         } catch (err) {
             console.error("Erro ao buscar manifestações:", err);
             setError(err.message || "Erro desconhecido");

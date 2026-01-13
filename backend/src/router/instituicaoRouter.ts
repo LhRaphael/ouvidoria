@@ -16,6 +16,8 @@ instituicaoRouter.get('/', async (req, res) => {
     return res.json(await instituicaoController.getAll());
 });
 
+
+
 instituicaoRouter.post('/', async (req, res) => {
     return res.json(await instituicaoController.create(req.body));
 });

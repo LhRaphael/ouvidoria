@@ -34,6 +34,7 @@ export class LoginMiddleware {
                 cargo: admin.cargo,
                 cpf: admin.cpf,
                 instituicao: admin.instituicaoId,
+                cnpj: admin.instituicaoCNPJ
             };
             return dataAdmin;
         } catch (error) {
