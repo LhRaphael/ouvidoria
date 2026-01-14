@@ -65,8 +65,8 @@ function ReportAdmin() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    instituicao: user.instituicao,
-                    relatorio: relatorio,
+                    instituicaoId: user.instituicao,
+                    texto: relatorio,
                 }),
             });
             if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
@@ -104,10 +104,10 @@ function ReportAdmin() {
                 <h3>Relatórios Gerados:</h3>
                 <ul>
                     {relatorios.map((r, index) => (
-                        <li key={index}>{r}</li>
+                        <li key={index}>{r.conteudo}</li>
                     ))}
                 </ul>
-                <button onClick={ () => {gerarRelatorioAdmin(); saveRelatorio()}}>Gerar Relatório</button>
+                <button onClick={ () => {gerarRelatorioAdmin(); saveRelatorio();}}>Gerar Relatório</button>
             </div>
         </div>
     )

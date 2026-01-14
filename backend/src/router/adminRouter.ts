@@ -20,6 +20,10 @@ adminRouter.get('/cnpj/:cnpj', async (req, res) => {
   return res.json(await adminController.getAllAdminsByCnpj(req.params.cnpj));
 });
 
+adminRouter.delete('/:cpf', async (require, res) =>{
+  return res.json(await adminController.deletAdmin(require.params.cpf))
+})
+
 adminRouter.get('/', async (req, res) => {
   return res.json(await adminController.getAllAdmins());
 });

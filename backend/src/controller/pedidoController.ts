@@ -77,9 +77,9 @@ export class PedidoController {
         }
     }
 
-    async delete(id: String) {
+    async delete(cpf: string) {
         try {
-            await pedidoService.delete(Number(id));
+            await pedidoService.delete(cpf);
         } catch (error) {
             throw error;
         }

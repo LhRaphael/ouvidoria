@@ -63,11 +63,11 @@ export class PedidoService {
         }
     }
 
-    async delete(id: number) {
+    async delete(cpf: string) {
         try {
             await prisma.pedido.delete({
                 where: {
-                    id,
+                    adminCPF: cpf,
                 },
             });
         } catch (error) {

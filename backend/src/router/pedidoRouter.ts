@@ -26,8 +26,8 @@ pedidoRouter.get("/cnpj/:cnpj", async (req, res) => {
 pedidoRouter.get("/simples/cnpj/:cnpj", async (req, res) =>{
   return res.json(await pedidoController.getSimpleByCnpj(req.params.cnpj))
 })
-pedidoRouter.delete("/:id", async (req, res) => {
-  await pedidoController.delete(req.params.id);
+pedidoRouter.delete("/:cpf", async (req, res) => {
+  await pedidoController.delete(req.params.cpf);
   return res.status(204).send();
 });
 

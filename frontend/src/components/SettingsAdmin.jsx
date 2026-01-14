@@ -19,6 +19,30 @@ function SettingsAdmin() {
         }
     }
 
+    const rejeitarFuncionario = async (cpf) =>{
+        try{
+            const response = await fetch(`http://localhost:3001/pedidos/${cpf}`, {method:'DELETE',})
+            if(!response.ok) throw new Error(`${response.status}`)
+            else alert("Funcionário excluido")
+            fetchFuncionariosPendentes()
+        }
+        catch(err){
+            console.error("Erro ao deletar pedido")
+        }
+    }
+
+    const aceitarFuncionario = async (cpf) =>{
+        try{
+            const response = await fetch(`http://localhost:3001/pedidos/${cpf}`, {method:'DELETE',})
+            if(!response.ok) throw new Error(`${response.status} ${response.statusText}`)
+            else alert("Funcionário aceito")
+            fetchFuncionariosPendentes()
+        }
+        catch(err){
+            console.error("Erro ao aceitar funcionário"+ err)
+        }
+    }
+
     const fetchFuncionariosPendentes = async () => {
         try {
             const response = await fetch(`http://localhost:3001/pedidos/simples/cnpj/${user.cnpj}`);
@@ -57,7 +81,7 @@ function SettingsAdmin() {
                     <h4>Aceitação de Funcionários</h4>
                     <ul>
                         {pedidos.map((f, index) => (
-                            <li key={index}>{f.nome} - {f.email} - {f.cpf}</li>
+                            <li key={index}>{f.nome} - {f.email} - {f.cpf} <button onClick={()=>aceitarFuncionario(f.cpf)}>Aceitar</button> <button>Recusar</button></li>
                         ))}
                     </ul>
                 </div>

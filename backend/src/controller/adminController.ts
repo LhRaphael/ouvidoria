@@ -35,6 +35,16 @@ export class AdminController {
         }
     }
 
+    async deletAdmin(cpf: string){
+        try{
+            const admin = await adminService.delete(cpf)
+            return admin
+        }
+        catch(error){
+            throw error
+        }
+    }
+
     async getAllAdmins() {
         try {
             const admins = await adminService.findAll();
@@ -56,7 +66,8 @@ export class AdminController {
         try {
             const admin = await adminService.create(data);
             const funcionarios = await adminService.findAllByCnpj(data.instituicaoCnpj);
-            if(funcionarios.length >= 1){
+            console.log(funcionarios.length)
+            if(funcionarios.length > 1){
                 //ele vai pra tabela de pedidos
                 data.cargo = "PENDENTE";
                 const pedidoData = {

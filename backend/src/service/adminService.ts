@@ -47,10 +47,10 @@ export class AdminService {
         return admin;
     }
 
-    async delete(id: number) {
+    async delete(cpf: string) {
         await prisma.admin.delete({
             where: {
-                id,
+                cpf
             },
         });
     }
