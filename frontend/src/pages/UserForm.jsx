@@ -3,13 +3,16 @@ import Footer from "../components/Footer";
 import { validationEmail, validationPass, validationCPF} from "../utils/validations";
 import { seePassword } from "../utils/seePass";
 import { Link } from "react-router-dom";
-import { use, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../utils/Context";
 
 function UserForm() {
     const [loading, setLoading] = useState(false);
     const [location, setLocation] = useState(null);
     const navigate = useNavigate()
+
+   
 
     const localData = (event)=>{
         setLoading(true);

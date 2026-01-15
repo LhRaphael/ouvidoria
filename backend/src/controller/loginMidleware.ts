@@ -48,7 +48,7 @@ export class LoginMiddleware {
             if(user){
                 return user;
             }
-            throw new Error("Invalid credentials");
+            throw new Error("Credenciais inválidas");
         } catch (error) {
 
             try {
@@ -65,7 +65,7 @@ export class LoginMiddleware {
                     return admin;
                 }
 
-                throw new Error("Invalid credentials");
+                throw new Error("Credenciais inválidas");
             } catch (adminError) {
                 throw adminError;
             }

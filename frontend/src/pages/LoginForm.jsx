@@ -56,7 +56,7 @@ function LoginForm() {
                     <button onClick={showPass}>visualizar</button>
                     <button type="submit">Entrar</button>
                 </form>
-                <Link to="/changePass">Esqueci minha senha</Link>
+                {/* <Link to="/changePass">Esqueci minha senha</Link> */}
             </main>
             <Footer />
         </div>

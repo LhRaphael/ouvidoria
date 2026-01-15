@@ -3,8 +3,23 @@ import Footer from "../components/Footer";
 import Modal from "../components/Modal";
 import { useAppContext } from "../utils/Context";
 import TableManifest from "../components/TableManifest";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
 function UserMain() {
     const { isModalOpen, manageModal, user } = useAppContext();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        
+        if (!user || !user.nome) {
+            navigate("/loginForm");
+        }
+    }, [user, navigate]);
+
+    if (!user || !user.nome) {
+        return null; 
+    }
 
     return (
         <div className="userMain">

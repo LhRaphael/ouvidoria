@@ -1,8 +1,7 @@
 import { useAppContext } from "../utils/Context";
 import { useState, useEffect } from "react";
 
-
-function Modal(){
+function Modal() {
     const { manageModal } = useAppContext();
     const { user } = useAppContext();
     const { setReloadManifestacoes } = useAppContext();
@@ -16,7 +15,7 @@ function Modal(){
     useEffect(() => {
         const fetchInstituicao = async () => {
             try {
-                const response = await fetch(`http://localhost:3001/instituicoes`); // retorna todas as instituições
+                const response = await fetch(`http://localhost:3001/instituicoes`);
                 const data = await response.json();
 
                 const dataSet = data.map(item => ({
@@ -24,15 +23,11 @@ function Modal(){
                     nome: item.nome,
                     cnpj: item.cnpj,
                 }));
-
-                console.log("Instituições buscadas:", dataSet);
-                
                 setInstituicoes(dataSet);
             } catch (error) {
                 console.error("Erro ao buscar instituição:", error);
             }
         };
-
         fetchInstituicao();
     }, []);
 
@@ -97,9 +92,7 @@ function Modal(){
         try {
             const response = await fetch("http://localhost:3001/manifestacoes", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),
             });
 
@@ -114,65 +107,87 @@ function Modal(){
             console.error("Erro na requisição:", error);
             alert("Erro ao registrar manifestação.");
         }
-    
     }
 
     return (
-        <form className="modal" onSubmit={saveManifestation}>
-            <h2>Registrar nova manifestação</h2>
-            <div>
-                <span>Selecionar Categória</span>
-                <select name="type" id="typeSelectModal">
-                    <option value="Reclamação">Reclamação</option>
-                    <option value="Elogio">Elogio</option>
-                    <option value="Sugestão">Sugestão</option>
-                    <option value="Denúncia">Denúncia</option>
-                </select>
-            </div>
-            <div>
-                <label htmlFor="descriptionModal">Descrição</label>
-                <textarea name="descriptionModal" id="descriptionModal" placeholder="Descreva sua manifestação aqui..." ></textarea>
-            </div>
-            <div style={{ position: 'relative' }}>
-                <span>Instituição</span>
-                <input
-                    type="text"
-                    name="instituicao"
-                    value={instituicao}
-                    onChange={handleInstituicaoChange}
-                    onKeyDown={handleKeyDown}
-                    autoComplete="off"
-                />
+        // O overlay cobre toda a tela e fecha o modal ao ser clicado
+        <div className="modal-overlay" onClick={manageModal}>
+            {/* O stopPropagation impede que o clique no form feche o modal */}
+            <form className="modal-content" onSubmit={saveManifestation} onClick={(e) => e.stopPropagation()}>
+                <div className="modal-header">
+                    <h2>Nova Manifestação</h2>
+                    <button type="button" className="close-btn" onClick={manageModal}>&times;</button>
+                </div>
 
-                {showSuggestions && (
-                    <ul className="suggestions-list" style={{ position: 'absolute', zIndex: 10, background: 'white', listStyle: 'none', margin: 0, padding: 0, border: '1px solid #ccc', width: '100%' }}>
-                        {suggestions.map((inst, idx) => (
-                            <li
-                                key={inst.id}
-                                onClick={() => handleSuggestionClick(inst)}
-                                style={{ padding: '8px', cursor: 'pointer', background: idx === activeIndex ? '#eee' : 'transparent' }}
-                            >
-                                {inst.nome}
-                            </li>
-                        ))}
-                    </ul>
-                )}
-            </div>
+                <div className="form-group">
+                    <label htmlFor="typeSelectModal">Categoria</label>
+                    <select name="type" id="typeSelectModal" required>
+                        <option value="" disabled selected>Selecione...</option>
+                        <option value="Reclamação">Reclamação</option>
+                        <option value="Elogio">Elogio</option>
+                        <option value="Sugestão">Sugestão</option>
+                        <option value="Denúncia">Denúncia</option>
+                    </select>
+                </div>
 
-            <div>
-                <label htmlFor="fileModal">Anexar arquivo (opcional)</label>
-                <input type="file" name="fileModal" id="fileModal"/>
-            </div>
-            <div>
-                <input type="checkbox" name="anonimo" id="anonimo" />
-                <label htmlFor="anonimo">Manifestação anônima</label>
-                <span>Seu Perfil não será anexado à manifestação</span>
-            </div>
-            <div>
-                <button onClick={manageModal}>Cancelar</button>
-                <input type="submit" value="Enviar" />
-            </div>
-        </form>
+                <div className="form-group">
+                    <label htmlFor="descriptionModal">Descrição</label>
+                    <textarea 
+                        name="descriptionModal" 
+                        id="descriptionModal" 
+                        placeholder="Descreva os detalhes aqui..." 
+                        required 
+                        rows="4"
+                    ></textarea>
+                </div>
+
+                <div className="form-group" style={{ position: 'relative' }}>
+                    <label>Instituição</label>
+                    <input
+                        type="text"
+                        name="instituicao"
+                        value={instituicao}
+                        onChange={handleInstituicaoChange}
+                        onKeyDown={handleKeyDown}
+                        autoComplete="off"
+                        placeholder="Busque pelo nome da instituição..."
+                        required
+                    />
+
+                    {showSuggestions && (
+                        <ul className="suggestions-list">
+                            {suggestions.map((inst, idx) => (
+                                <li
+                                    key={inst.id}
+                                    className={idx === activeIndex ? "active" : ""}
+                                    onClick={() => handleSuggestionClick(inst)}
+                                >
+                                    {inst.nome}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
+
+                {/* <div className="form-group">
+                    <label htmlFor="fileModal">Anexar arquivo <small>(opcional)</small></label>
+                    <input type="file" name="fileModal" id="fileModal" />
+                </div> */}
+
+                <div className="form-check">
+                    <input type="checkbox" name="anonimo" id="anonimo" />
+                    <div>
+                        <label htmlFor="anonimo">Manifestação Anônima</label>
+                        <small>Seu perfil não será vinculado publicamente.</small>
+                    </div>
+                </div>
+
+                <div className="modal-actions">
+                    <button type="button" className="btn-secondary" onClick={manageModal}>Cancelar</button>
+                    <button type="submit" className="btn-primary">Registrar</button>
+                </div>
+            </form>
+        </div>
     )
 }
 
