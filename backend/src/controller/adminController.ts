@@ -93,4 +93,14 @@ export class AdminController {
         }
     }
 
+    async update(data:{id:number, cargo:string}){
+        try{
+            const admin = await adminService.updateCargo(data)
+            return admin;
+        }catch(error){
+            throw error
+        }
+        
+    }
+
 }

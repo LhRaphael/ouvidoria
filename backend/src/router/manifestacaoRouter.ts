@@ -28,4 +28,11 @@ manifestacaoRouter.post('/', async (req, res) => {
     return res.json(await manifestacaoController.create(req.body));
 });
 
+manifestacaoRouter.put('/', async (req, res) =>{
+    return res.json(await manifestacaoController.update(req.body))
+})
+
+manifestacaoRouter.delete('/:id', async (req, res) =>{
+    return res.json(await manifestacaoController.delete(Number(req.params.id)))
+})
 export { manifestacaoRouter };

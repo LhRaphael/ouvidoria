@@ -79,6 +79,24 @@ export class ManifestacaoController {
         catch(error){
             throw error;
         }   
-    }       
+    }    
+    
+    async update(data:{id:number,status:string}){
+        try{
+            const manifestacao = await manifestacaoService.update(data)
+            return manifestacao
+        }catch(error){
+            throw error
+        }
+    }
+
+    async delete(id:number){
+        try{
+            const manifestacao = await manifestacaoService.delete(id)
+            return manifestacao
+        }catch(error){
+            throw error
+        }
+    }
 }
 

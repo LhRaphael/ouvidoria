@@ -117,11 +117,25 @@ export class ManifestacaoService {
         return manifestacoes;
     }
 
+    async update(data:{id:number, status: string}){
+
+        const manifestacao = prisma.manifestacao.update({
+            where:{
+                id: data.id,
+            },
+            data:{
+                status: data.status
+            }
+        })
+        return manifestacao
+    }
+
     async delete(id: number) {
-        await prisma.manifestacao.delete({
+        const manifestacao = await prisma.manifestacao.delete({
             where: {
                 id,
             },
         });
+        return manifestacao
     }
 }

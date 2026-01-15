@@ -1,8 +1,6 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Modal from "../components/Modal";
-import { Link } from "react-router-dom";
-import { useState } from "react";
 import { useAppContext } from "../utils/Context";
 import TableManifest from "../components/TableManifest";
 function UserMain() {
@@ -11,7 +9,7 @@ function UserMain() {
     return (
         <div className="userMain">
             <Header>
-                <Link to="/userProfile">Pefil</Link>
+                <h2>{user.nome}</h2>
             </Header>
             <main>
                 <div>

@@ -24,6 +24,10 @@ adminRouter.delete('/:cpf', async (require, res) =>{
   return res.json(await adminController.deletAdmin(require.params.cpf))
 })
 
+adminRouter.put("/",async (req,res) =>{
+  return res.json(await adminController.update(req.body))
+})
+
 adminRouter.get('/', async (req, res) => {
   return res.json(await adminController.getAllAdmins());
 });

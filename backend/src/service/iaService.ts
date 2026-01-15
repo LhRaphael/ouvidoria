@@ -10,6 +10,9 @@ const model = aiClient.getGenerativeModel({ model: "gemini-3-flash-preview" })
 export class IAService {
 
     async gerarTexto(prompt: string): Promise<string> {
+        const base = "Gere um relátorio adminsitrativo sobre os seguintes textos enviados pelos nossos clientes, seja direto e evite muitas explicações ortográficas: "
+        prompt = base+prompt
+
         const result = await model.generateContent(prompt);
         const response = await result.response;
         return response.text();
