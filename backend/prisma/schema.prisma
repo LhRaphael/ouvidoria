@@ -1,0 +1,115 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  
+}
+
+model Usuario {
+  id Int @id @default(autoincrement())
+
+  nome String
+  cpf String @unique
+  email String @unique
+  telefone String @unique
+  nascimento DateTime
+  endereco Endereco[]
+  manifestacoes Manifestacao[]
+  senhaHash String
+}
+
+model Endereco{
+  id Int @id @default(autoincrement())
+
+  pais String
+  estado String
+  cidade String
+
+  usuarioId Int
+  usuario Usuario @relation(fields: [usuarioId], references: [id])
+}
+
+model Instituicao{
+  id Int @id @default(autoincrement())
+
+  nome String  @unique
+  cnpj String @unique
+  sede String
+
+  admins Admin[]
+  manifestacoes Manifestacao[]
+  resumos Resumo[]
+  pedidos Pedido[]
+}
+
+model Admin{
+  id Int @id @default(autoincrement())
+
+  nome String
+  email String @unique
+  cpf String @unique
+  senhaHash String
+  cargo String
+
+  instituicaoCNPJ String
+  instituicao Instituicao @relation(fields: [instituicaoCNPJ], references: [cnpj])
+
+  pedido Pedido?
+}
+
+model Manifestacao{
+  id Int @id  @default(autoincrement())
+  criado DateTime @default(now())
+
+  usuarioId Int
+  usuario Usuario  @relation(fields: [usuarioId], references: [id])
+
+  instituicaoId Int
+  instituicao Instituicao @relation(fields: [instituicaoId], references: [id])
+
+  conteudo String
+  tipo String
+  anonimo Boolean
+  status String @default("Pendente")
+
+  links Links[]
+}
+
+model Links{
+  id Int @id @default(autoincrement())
+
+  link String @unique
+
+  manifestacaoId Int
+  manifestacao Manifestacao @relation(fields: [manifestacaoId], references: [id])
+}
+
+model Resumo{
+  id Int @id @default(autoincrement())
+
+  criacao DateTime
+  conteudo String
+
+  instituicaoId Int
+  instituicao Instituicao @relation(fields: [instituicaoId], references: [id])
+
+}
+
+model Pedido{
+  id Int @id @default(autoincrement())
+  data DateTime @default(now())
+
+  instituicaoCNPJ String
+  instituicao Instituicao @relation(fields: [instituicaoCNPJ], references: [cnpj])
+
+  adminCPF String @unique
+  admin Admin @relation(fields: [adminCPF], references: [cpf])
+}

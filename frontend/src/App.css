@@ -1,0 +1,698 @@
+/* ==========================================================================
+   1. Variáveis & Reset (Design System)
+   ========================================================================== */
+:root {
+  /* Paleta de Cores Institucional */
+  --primary-color: #0f4c81;       /* Azul Institucional */
+  --primary-dark: #0a355c;        /* Azul Escuro (Hover) */
+  --secondary-color: #6c757d;     /* Cinza Azulado */
+  --background-body: #f4f6f8;     /* Fundo da Aplicação */
+  --background-card: #ffffff;     /* Fundo de Cartões/Modais */
+  
+  /* Cores de Feedback */
+  --color-success: #10b981;       /* Verde (Concluído/Elogio) */
+  --color-warning: #f59e0b;       /* Amarelo (Pendente/Sugestão) */
+  --color-info: #3b82f6;          /* Azul (Em análise) */
+  --color-danger: #ef4444;        /* Vermelho (Erro/Denúncia) */
+  
+  /* Tipografia */
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --text-light: #ffffff;
+
+  /* Espaçamento e Formas */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+  --transition: all 0.2s ease-in-out;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-main);
+  background-color: var(--background-body);
+  color: var(--text-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  color: var(--primary-color);
+  margin-top: 0;
+  font-weight: 700;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ==========================================================================
+   2. Componentes UI Globais (Atoms)
+   ========================================================================== */
+
+/* Botões */
+button, .btn-landpage, .btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  text-decoration: none;
+}
+
+button:hover, .btn-landpage:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+}
+
+button:disabled {
+  background-color: var(--secondary-color);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Variantes de Botões */
+.btn-secondary {
+  background-color: transparent;
+  border: 1px solid var(--secondary-color);
+  color: var(--secondary-color);
+}
+
+.btn-secondary:hover {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.btn-delete {
+  background-color: var(--color-danger);
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+}
+
+.btn-delete:hover {
+  background-color: #d32f2f;
+}
+
+/* Inputs e Formulários */
+input, select, textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-main);
+  font-size: 1rem;
+  transition: var(--transition);
+  background-color: #fff;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(15, 76, 129, 0.1);
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text-main);
+  font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   3. Estrutura e Layouts (Admin vs User)
+   ========================================================================== */
+
+/* Header Global */
+header {
+  background-color: var(--background-card);
+  box-shadow: var(--shadow-sm);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: var(--primary-color);
+}
+
+header a {
+  text-decoration: none;
+}
+
+header > div {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Footer Global */
+.footerMain {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  padding: 2rem;
+  text-align: center;
+  margin-top: auto;
+}
+
+.footerMain h3 {
+  color: var(--text-light);
+  opacity: 0.9;
+}
+
+.footerMain ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.footerMain li {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* --- Layout Admin (Grid + Sidebar) --- */
+.admin-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Desktop Admin Layout */
+@media (min-width: 768px) {
+  .admin-layout {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "header header"
+      "sidebar content"
+      "footer footer";
+  }
+
+  .admin-layout > header {
+    grid-area: header;
+  }
+
+  /* Aside Admin - Sidebar */
+  .asideAdmin {
+    grid-area: sidebar;
+    background-color: var(--background-card);
+    border-right: 1px solid #e2e8f0;
+    padding: 2rem 1rem;
+    height: 100%;
+  }
+
+  .admin-layout > main, 
+  .admin-layout > .panelAdmin,
+  .admin-layout > .reportAdmin, 
+  .admin-layout > .settingsAdmin {
+    grid-area: content;
+    padding: 2rem;
+    overflow-x: hidden;
+  }
+
+  .admin-layout > .footerMain {
+    grid-area: footer;
+  }
+}
+
+/* Estilo do Menu Lateral (Admin) */
+.asideAdmin h1 {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  padding-left: 0.5rem;
+}
+
+.asideAdmin ul li {
+  margin-bottom: 0.5rem;
+}
+
+.asideAdmin button {
+  width: 100%;
+  justify-content: flex-start;
+  background-color: transparent;
+  color: var(--text-muted);
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+}
+
+.asideAdmin button:hover {
+  background-color: #f1f5f9;
+  color: var(--primary-color);
+  box-shadow: none;
+  transform: none;
+}
+
+/* --- Layout User --- */
+.userMain, .userProfile, .changePass, .loginForm, .userForm, .adminForm {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.userMain main {
+  max-width: 1200px;
+  width: 95%;
+  margin: 2rem auto;
+  flex: 1;
+}
+
+/* Cabeçalho da área do usuário */
+.userMain main > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* ==========================================================================
+   4. Páginas de Autenticação e Formulários (Cards)
+   ========================================================================== */
+.loginForm main, .userForm main, .adminForm main, .changePass main, .registerAdmin {
+  max-width: 480px;
+  width: 90%;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  background: var(--background-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.userForm main {
+  max-width: 800px; /* Formulário maior */
+}
+
+/* Layout de duas colunas para formulários grandes */
+@media (min-width: 768px) {
+  .userForm form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  
+  .userForm form button[type="submit"] {
+    grid-column: span 2;
+  }
+  
+  .userForm form div {
+    margin-bottom: 0; /* O gap do grid trata do espaço */
+  }
+}
+
+.loginForm span, .userForm span {
+  display: block;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.userForm aside, .changePass ul {
+  max-width: 480px;
+  margin: 1rem auto;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  background: #fff3cd;
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  border-left: 4px solid var(--color-warning);
+}
+
+.userForm aside ul, .changePass ul {
+  padding-left: 1.2rem;
+  list-style: disc;
+}
+
+/* ==========================================================================
+   5. Tabelas e Listas (.TableManifest)
+   ========================================================================== */
+.panelAdmin h2, .tableManifest h2 {
+  margin-bottom: 1.5rem;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius-md);
+  background: var(--background-card);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px; /* Garante scroll em mobile */
+}
+
+thead {
+  background-color: #f8fafc;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+th {
+  text-align: left;
+  padding: 1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+td {
+  padding: 1rem;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+tr:hover {
+  background-color: #f8fafc;
+}
+
+/* Badges de Status */
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* O código React gera classes combinadas (ex: status-em análise). 
+   Usamos seletores parciais ou combinados para cobrir os casos. */
+
+/* Pendente -> Amarelo */
+.status-pendente {
+  background-color: #fffbeb;
+  color: var(--color-warning);
+  border: 1px solid #fcd34d;
+}
+
+/* Concluída / Concluído -> Verde */
+.status-concluida, .status-concluído {
+  background-color: #d1fae5;
+  color: var(--color-success);
+  border: 1px solid #6ee7b7;
+}
+
+/* Cancelado / Denúncia -> Vermelho */
+.status-cancelado, .status-denúncia {
+  background-color: #fee2e2;
+  color: var(--color-danger);
+  border: 1px solid #fca5a5;
+}
+
+/* Em Análise / Em Processo / Elogio -> Azul */
+.status-analise, .status-análise, .status-elogio, .status-processo, .status-andamento {
+  background-color: #eff6ff;
+  color: var(--color-info);
+  border: 1px solid #93c5fd;
+}
+
+/* Tratamento para classes com espaços (status-em análise) */
+.status-em.análise, .status-em.andamento {
+  background-color: #eff6ff;
+  color: var(--color-info);
+  border: 1px solid #93c5fd;
+}
+
+/* Filtros no Painel Admin */
+.panelAdmin > div:last-child {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--background-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.panelAdmin h3 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.panelAdmin input[type="checkbox"] {
+  width: auto;
+  margin-right: 0.5rem;
+}
+
+.panelAdmin ul {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ==========================================================================
+   6. Landing Page
+   ========================================================================== */
+.LandPage header div {
+  margin-left: auto;
+}
+
+.LandPage main {
+  text-align: center;
+  padding: 5rem 1rem;
+  background: linear-gradient(135deg, var(--background-body) 0%, #e0e7ff 100%);
+}
+
+.LandPage h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+}
+
+.LandPage main p {
+  max-width: 700px;
+  margin: 0 auto 2.5rem;
+  font-size: 1.25rem;
+  color: var(--text-muted);
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cta-buttons .btn-landpage {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+}
+
+/* Secção "Como funciona" */
+.homeList {
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.homeList > div {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.homeList h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.homeList p {
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   7. Modal
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal-content {
+  background: var(--background-card);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 500px;
+  box-shadow: var(--shadow-lg);
+  animation: slideIn 0.3s ease-out;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 1rem;
+}
+
+.close-btn {
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  padding: 0;
+  width: auto;
+}
+
+.close-btn:hover {
+  background: transparent;
+  color: var(--color-danger);
+  transform: none;
+  box-shadow: none;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.form-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.form-check input {
+  width: auto;
+  margin-top: 0.3rem;
+}
+
+/* Lista de Sugestões (Autocomplete) */
+.suggestions-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: -0.5rem;
+}
+
+.suggestions-list li {
+  padding: 0.75rem;
+  cursor: pointer;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.suggestions-list li:hover, .suggestions-list li.active {
+  background-color: #f1f5f9;
+  color: var(--primary-color);
+}
+
+/* ==========================================================================
+   8. Utilitários e Mobile
+   ========================================================================== */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .LandPage h2 {
+    font-size: 1.8rem;
+  }
+  
+  .modal-content {
+    padding: 1.5rem;
+  }
+
+  /* Ajuste tabela mobile */
+  th, td {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Loading e Mensagens de Erro */
+.loading-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 2rem auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
