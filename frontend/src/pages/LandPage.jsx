@@ -6,8 +6,10 @@ function LandPage() {
     return (
         <div className="LandPage">
             <Header>
-                <Link to="/loginForm">Login</Link>
-                <Link to="/userForm">Create account</Link>
+                <div>
+                    <Link to="/loginForm">Login</Link>
+                    <Link to="/userForm">Create account</Link>
+                </div>
             </Header>
             <main>
                 <h2>Sua voz, nossa prioridade</h2>
@@ -16,8 +18,10 @@ function LandPage() {
                     Registre suas reclamações, sugestões, elogios ou denúncias de forma 
                     fácil e acompanhe todo o processo.
                 </p>
-                <Link to="/loginForm">Registrar manifestação</Link>
-                <Link to="/adminForm">Cadastrar Instituição</Link>
+                <div className="cta-buttons">
+                    <Link to="/loginForm" className="btn-landpage">Registrar manifestação</Link>
+                    <Link to="/adminForm" className="btn-landpage">Cadastrar Instituição</Link>
+                </div>
             </main>
             <div className="homeList">
                 <h2>Como funciona?</h2>

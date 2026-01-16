@@ -1,5 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { useAppContext } from "../utils/Context";
+import ReactMarkdown from 'react-markdown';
+import remarkBreaks from 'remark-breaks';
 
 function ReportAdmin() {
     const { user } = useAppContext();
@@ -39,7 +41,6 @@ function ReportAdmin() {
 
     // --- Lógica de Filtro e Geração ---
 
-    // Memoiza as manifestações filtradas para evitar recálculos desnecessários
     const manifestacoesFiltradas = useMemo(() => {
         if (!mesFiltro) return [];
         const [ano, mes] = mesFiltro.split('-');
@@ -99,8 +100,8 @@ function ReportAdmin() {
             if (!response.ok) throw new Error("Erro ao salvar");
             
             alert("Relatório salvo com sucesso!");
-            setRelatorioGerado(""); // Limpa após salvar
-            fetchRelatoriosSalvos(); // Atualiza a lista
+            setRelatorioGerado(""); 
+            fetchRelatoriosSalvos(); 
         } catch (err) {
             console.error("Erro ao salvar relatório:", err);
             alert("Não foi possível salvar o relatório.");
@@ -113,6 +114,14 @@ function ReportAdmin() {
             fetchRelatoriosSalvos();
         }
     }, [user]);
+
+    // Função Auxiliar para corrigir quebras de linha vindas do backend
+    const formatTextoIA = (texto) => {
+        if (!texto) return "";
+        // Substitui quebras de linha escapadas (\\n) por reais (\n)
+        // e garante que o Markdown processe
+        return texto.replace(/\\n/g, '\n');
+    }
 
     return (
         <div className="reportAdmin">
@@ -148,11 +157,12 @@ function ReportAdmin() {
                 {relatorioGerado && (
                     <div className="preview-relatorio" style={{ marginTop: '15px' }}>
                         <h4>Pré-visualização:</h4>
+                        {/* Textarea para edição rápida (mostra texto puro) */}
                         <textarea 
                             rows="10" 
-                            style={{ width: '100%' }} 
+                            style={{ width: '100%', fontFamily: 'monospace' }} 
                             value={relatorioGerado} 
-                            onChange={(e) => setRelatorioGerado(e.target.value)} // Permite edição manual antes de salvar
+                            onChange={(e) => setRelatorioGerado(e.target.value)} 
                         />
                         <div style={{ marginTop: '10px' }}>
                             <button onClick={salvarRelatorio}>Confirmar e Salvar</button>
@@ -165,11 +175,17 @@ function ReportAdmin() {
             <div className="historico-container">
                 <h3>Histórico de Relatórios Salvos</h3>
                 {relatoriosSalvos.length === 0 ? <p>Nenhum relatório salvo.</p> : (
-                    <ul>
+                    <ul className="lista-relatorios">
                         {relatoriosSalvos.map((r, index) => (
-                            <li key={r.id || index} style={{ marginBottom: '10px', borderBottom: '1px solid #eee' }}>
-                                <p style={{ whiteSpace: 'pre-wrap' }}>{r.conteudo}</p>
-                                <small>Gerado em: {r.criacao ? new Date(r.criacao).toLocaleDateString() : 'Data desconhecida'}</small>
+                            <li key={r.id || index} className="card-relatorio" style={{ marginBottom: '15px', padding: '15px', border: '1px solid #eee', borderRadius: '8px' }}>
+                                <div className="markdown-content">
+                                    <ReactMarkdown remarkPlugins={[remarkBreaks]}>
+                                        {formatTextoIA(r.conteudo)}
+                                    </ReactMarkdown>
+                                </div>
+                                <small style={{ display: 'block', marginTop: '10px', color: '#666' }}>
+                                    Gerado em: {r.criacao ? new Date(r.criacao).toLocaleDateString() : 'Data desconhecida'}
+                                </small>
                             </li>
                         ))}
                     </ul>
